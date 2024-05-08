@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
     <head>
         <meta charset="UTF-8">
@@ -8,6 +8,25 @@
 
     <body>
         <p>Offices <a href="officeCreation" role="button">+</a></p>
+
+        <div th:if="${dataOffices.isEmpty()}">
+            <p>Add your first office!</p>
+        </div>
+
+        <div th:if="${!dataOffices.isEmpty()}">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Office</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dataOffice : ${dataOffices}">
+                        <td th:text="${dataOffice.officeName}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 
 </html>
