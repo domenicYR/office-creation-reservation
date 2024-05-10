@@ -23,6 +23,7 @@
                 <tbody>
                     <tr th:each="dataOffice : ${dataOffices}">
                         <td th:text="${dataOffice.officeName}"></td>
+                        <td><a th:href="@{/show-rooms/{id}(id=${dataOffice.id})}" role="button">Show rooms</a></td>
                     </tr>
                 </tbody>
             </table>
