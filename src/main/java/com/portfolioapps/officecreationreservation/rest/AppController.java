@@ -42,4 +42,15 @@ public class AppController {
         model.addAttribute("office", formData);
         return "result";
     }
+
+    // handle request for showing rooms
+    @GetMapping("/show-rooms/{id}")
+    public String displayRooms(@PathVariable("id") Integer id, Model model) {
+        OfficeCreationForm officeWithRequestedID = officeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
+
+        model.addAttribute("officeWithRequestedID", officeWithRequestedID);
+
+        return "show-rooms";
+    }
 }
