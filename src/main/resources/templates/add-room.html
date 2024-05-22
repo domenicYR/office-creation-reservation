@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+        <form th:action="@{/show-rooms/add-room}" th:object="${room}" method="post">
+            <p>Name: <input type="text" th:field="*{roomName}"></p>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+
+</html>
