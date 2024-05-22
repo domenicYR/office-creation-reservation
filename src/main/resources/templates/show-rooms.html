@@ -3,13 +3,13 @@
 
     <head>
         <meta charset="UTF-8">
-        <title th:text="${officeWithRequestedID.officeName}"></title>
+        <title th:text="${currentOffice.officeName}"></title>
     </head>
 
     <body>
-        <h1 th:text="${officeWithRequestedID.officeName}"></h1>
+        <h1 th:text="${currentOffice.officeName}"></h1>
 
-        <p>Rooms <a href="#" role="button">+</a></p>
+        <p>Rooms <a href="add-room" role="button">+</a></p>
     </body>
 
 </html>
