@@ -1,4 +1,4 @@
-package com.portfolioapps.officecreationreservation.rest;
+package com.portfolioapps.officecreationreservation.Controller;
 
 import com.portfolioapps.officecreationreservation.Room.Room;
 import com.portfolioapps.officecreationreservation.Office.Office;
