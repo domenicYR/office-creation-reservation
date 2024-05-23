@@ -36,13 +36,13 @@ public class AppController {
         return "offices";
     }
 
-    @GetMapping("/officeCreation")
+    @GetMapping("/office-creation")
     public String createOfficeForm(Model model) {
         model.addAttribute("office", new OfficeCreationForm());
-        return "officeCreation";
+        return "office-creation";
     }
 
-    @PostMapping("/officeCreation")
+    @PostMapping("/office-creation")
     public String createOfficeSubmit(@ModelAttribute OfficeCreationForm formData, Model model) {
         officeRepository.save(formData);
         model.addAttribute("office", formData);
