@@ -1,5 +1,6 @@
-package com.portfolioapps.officecreationreservation;
+package com.portfolioapps.officecreationreservation.Room;
 
+import com.portfolioapps.officecreationreservation.Room.Room;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
