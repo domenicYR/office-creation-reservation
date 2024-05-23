@@ -1,4 +1,4 @@
-package com.portfolioapps.officecreationreservation;
+package com.portfolioapps.officecreationreservation.Office;
 
 import jakarta.persistence.*;
 

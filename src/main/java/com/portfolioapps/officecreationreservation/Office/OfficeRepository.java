@@ -1,5 +1,6 @@
-package com.portfolioapps.officecreationreservation;
+package com.portfolioapps.officecreationreservation.Office;
 
+import com.portfolioapps.officecreationreservation.Office.Office;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

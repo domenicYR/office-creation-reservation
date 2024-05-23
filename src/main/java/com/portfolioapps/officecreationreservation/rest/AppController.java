@@ -1,8 +1,8 @@
 package com.portfolioapps.officecreationreservation.rest;
 
 import com.portfolioapps.officecreationreservation.Room;
-import com.portfolioapps.officecreationreservation.Office;
-import com.portfolioapps.officecreationreservation.OfficeRepository;
+import com.portfolioapps.officecreationreservation.Office.Office;
+import com.portfolioapps.officecreationreservation.Office.OfficeRepository;
 import com.portfolioapps.officecreationreservation.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

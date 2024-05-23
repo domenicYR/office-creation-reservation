@@ -1,5 +1,6 @@
 package com.portfolioapps.officecreationreservation;
 
+import com.portfolioapps.officecreationreservation.Office.Office;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
