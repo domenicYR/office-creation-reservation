@@ -1,7 +1,7 @@
 package com.portfolioapps.officecreationreservation.rest;
 
 import com.portfolioapps.officecreationreservation.AddRoomForm;
-import com.portfolioapps.officecreationreservation.OfficeCreationForm;
+import com.portfolioapps.officecreationreservation.Office;
 import com.portfolioapps.officecreationreservation.OfficeRepository;
 import com.portfolioapps.officecreationreservation.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AppController {
-    private static OfficeCreationForm currentOffice;
+    private static Office currentOffice;
 
     // Field(s)
     private OfficeRepository officeRepository;
@@ -38,12 +38,12 @@ public class AppController {
 
     @GetMapping("/office-creation")
     public String createOfficeForm(Model model) {
-        model.addAttribute("office", new OfficeCreationForm());
+        model.addAttribute("office", new Office());
         return "office-creation";
     }
 
     @PostMapping("/office-creation")
-    public String createOfficeSubmit(@ModelAttribute OfficeCreationForm formData, Model model) {
+    public String createOfficeSubmit(@ModelAttribute Office formData, Model model) {
         officeRepository.save(formData);
         model.addAttribute("office", formData);
         return "result";

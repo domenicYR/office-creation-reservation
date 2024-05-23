@@ -16,7 +16,7 @@ public class AddRoomForm {
     private String roomName;
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private OfficeCreationForm office;
+    private Office office;
 
     // Method(s)
     public Integer getId() {
@@ -35,11 +35,11 @@ public class AddRoomForm {
         this.roomName = roomName;
     }
 
-    public OfficeCreationForm getOffice() {
+    public Office getOffice() {
         return office;
     }
 
-    public void setOffice(OfficeCreationForm office) {
+    public void setOffice(Office office) {
         this.office = office;
     }
 }

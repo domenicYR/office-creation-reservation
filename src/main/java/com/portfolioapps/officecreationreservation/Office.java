@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "offices")
-public class OfficeCreationForm {
+public class Office {
     // Field(s)
     // "id" field corresponds primary key
     @Id
