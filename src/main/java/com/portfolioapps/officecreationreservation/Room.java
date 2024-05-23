@@ -6,7 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "rooms")
-public class AddRoomForm {
+public class Room {
     // Field(s)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

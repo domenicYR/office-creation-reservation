@@ -1,6 +1,6 @@
 package com.portfolioapps.officecreationreservation.rest;
 
-import com.portfolioapps.officecreationreservation.AddRoomForm;
+import com.portfolioapps.officecreationreservation.Room;
 import com.portfolioapps.officecreationreservation.Office;
 import com.portfolioapps.officecreationreservation.OfficeRepository;
 import com.portfolioapps.officecreationreservation.RoomRepository;
@@ -70,12 +70,12 @@ public class AppController {
     // handle request for showing form to add a room
     @GetMapping("/show-rooms/add-room")
     public String displayAddRoomForm(Model model) {
-        model.addAttribute("room", new AddRoomForm());
+        model.addAttribute("room", new Room());
         return "add-room";
     }
 
     @PostMapping("/show-rooms/add-room")
-    public String handleAddRoomFormData(@ModelAttribute AddRoomForm roomFormData, Model model) {
+    public String handleAddRoomFormData(@ModelAttribute Room roomFormData, Model model) {
         roomFormData.setOffice(currentOffice);
         this.roomRepository.save(roomFormData);
         model.addAttribute("room", roomFormData);
