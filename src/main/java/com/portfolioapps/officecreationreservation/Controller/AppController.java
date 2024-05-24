@@ -32,7 +32,7 @@ public class AppController {
 
     @GetMapping("/offices")
     public String displayOffices(Model model) {
-        model.addAttribute("dataOffices", officeRepository.findAll());
+        model.addAttribute("dataOffices", officeRepository.findAllOfficesOrderASC());
         return "offices";
     }
 
