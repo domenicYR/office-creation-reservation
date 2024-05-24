@@ -26,12 +26,12 @@ public class AppController {
 
     // Method(s)
     @GetMapping("/")
-    public String displayStartPage() {
+    public String showStartPage() {
         return "index";
     }
 
     @GetMapping("/offices")
-    public String displayOffices(Model model) {
+    public String showOffices(Model model) {
         model.addAttribute("dataOffices", officeRepository.findAllOfficesOrderASC());
         return "offices";
     }
@@ -50,7 +50,7 @@ public class AppController {
 
     // handle request for showing rooms to an office
     @GetMapping("/show-rooms/{id}")
-    public String displayRooms(@PathVariable("id") Integer id, Model model) {
+    public String showRooms(@PathVariable("id") Integer id, Model model) {
         currentOffice = officeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
 
@@ -69,7 +69,7 @@ public class AppController {
 
     // handle request for showing form to add a room
     @GetMapping("/show-rooms/add-room")
-    public String displayAddRoomForm(Model model) {
+    public String showAddRoomForm(Model model) {
         model.addAttribute("room", new Room());
         return "add-room";
     }
