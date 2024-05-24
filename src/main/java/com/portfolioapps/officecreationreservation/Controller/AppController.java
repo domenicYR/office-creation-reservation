@@ -75,10 +75,9 @@ public class AppController {
     }
 
     @PostMapping("/show-rooms/add-room")
-    public String handleAddRoomFormData(@ModelAttribute Room roomFormData, Model model) {
+    public String handleAddRoomFormData(@ModelAttribute Room roomFormData) {
         roomFormData.setOffice(currentOffice);
         this.roomRepository.save(roomFormData);
-        model.addAttribute("room", roomFormData);
-        return "resultRoom";
+        return "redirect:/show-rooms/" + currentOffice.getId();
     }
 }
