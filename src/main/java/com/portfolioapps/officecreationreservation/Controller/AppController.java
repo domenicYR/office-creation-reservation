@@ -43,10 +43,9 @@ public class AppController {
     }
 
     @PostMapping("/add-office")
-    public String createOfficeSubmit(@ModelAttribute Office formData, Model model) {
+    public String createOfficeSubmit(@ModelAttribute Office formData) {
         officeRepository.save(formData);
-        model.addAttribute("office", formData);
-        return "result";
+        return "redirect:/offices";
     }
 
     // handle request for showing rooms to an office
