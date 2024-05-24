@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Create an office</title>
+    </head>
+
+    <body>
+        <form th:action="@{/add-office}" th:object="${office}" method="post">
+            <p>Name: <input type="text" th:field="*{officeName}" /></p>
+            <p>Opening Times: <input type="text" th:field="*{officeOpeningTimes}" /></p>
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+
+</html>
