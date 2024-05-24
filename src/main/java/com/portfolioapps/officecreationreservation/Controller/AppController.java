@@ -56,6 +56,7 @@ public class AppController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
 
         model.addAttribute("currentOffice", currentOffice);
+        model.addAttribute("dataRooms", roomRepository.findAllRoomsByForeignKey(id));
 
         return "show-rooms";
     }
