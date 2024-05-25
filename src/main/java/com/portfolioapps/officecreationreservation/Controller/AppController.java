@@ -36,8 +36,9 @@ public class AppController {
         return "offices";
     }
 
+    // handle request for showing form to add an office
     @GetMapping("/add-office")
-    public String createOfficeForm(Model model) {
+    public String showAddOfficeForm(Model model) {
         model.addAttribute("office", new Office());
         return "add-office";
     }
