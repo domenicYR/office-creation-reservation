@@ -61,7 +61,7 @@ public class AppController {
     }
 
     // handle request for deleting an office
-    @GetMapping("/delete-rooms/{id}")
+    @GetMapping("/delete-office/{id}")
     public String deleteOffice(@PathVariable("id") Integer id) {
         this.officeRepository.deleteById(id);
         return "redirect:/offices";
