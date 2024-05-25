@@ -80,4 +80,11 @@ public class AppController {
         this.roomRepository.save(roomFormData);
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
+
+    // handle request for deleting a room
+    @GetMapping("/delete-room/{id}")
+    public String deleteRoom(@PathVariable("id") Integer id) {
+        this.roomRepository.deleteById(id);
+        return "redirect:/show-rooms/" + currentOffice.getId();
+    }
 }
