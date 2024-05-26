@@ -9,7 +9,8 @@
     <body>
         <form th:action="@{/add-office}" th:object="${office}" method="post">
             <p>Name: <input type="text" th:field="*{officeName}" /></p>
-            <p>Opening Times: <input type="text" th:field="*{officeOpeningTimes}" /></p>
+            <p>Opening Time: <input type="time" th:field="*{officeOpeningTime}"></p>
+            <p>Closing Time: <input type="time" th:field="*{officeClosingTime}"></p>
             <input type="submit" value="Submit" />
         </form>
     </body>
