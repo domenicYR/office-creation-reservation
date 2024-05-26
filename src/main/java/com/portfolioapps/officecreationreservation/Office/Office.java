@@ -13,8 +13,10 @@ public class Office {
 
     @Column(name = "officeName")
     private String officeName;
-    @Column(name = "officeOpeningTimes")
-    private String officeOpeningTimes;
+    @Column(name = "officeOpeningTime")
+    private String officeOpeningTime;
+    @Column(name = "officeClosingTime")
+    private String officeClosingTime;
 
     // Method(s)
     public Integer getId() {
@@ -33,11 +35,19 @@ public class Office {
         this.officeName = officeName;
     }
 
-    public String getOfficeOpeningTimes() {
-        return officeOpeningTimes;
+    public String getOfficeOpeningTime() {
+        return officeOpeningTime;
     }
 
-    public void setOfficeOpeningTimes(String officeOpeningTimes) {
-        this.officeOpeningTimes = officeOpeningTimes;
+    public void setOfficeOpeningTime(String officeOpeningTime) {
+        this.officeOpeningTime = officeOpeningTime;
+    }
+
+    public String getOfficeClosingTime() {
+        return officeClosingTime;
+    }
+
+    public void setOfficeClosingTime(String officeClosingTime) {
+        this.officeClosingTime = officeClosingTime;
     }
 }
