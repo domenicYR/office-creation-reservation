@@ -25,6 +25,7 @@
                 <tbody>
                     <tr th:each="dataRoom : ${dataRooms}">
                         <td th:text="${dataRoom.roomName}"></td>
+                        <td><a th:href="@{/reserve-room/{id}(id=${dataRoom.id})}">Reserve room</a></td>
                         <td><a th:href="@{/delete-room/{id}(id=${dataRoom.id})}">Delete room</a></td>
                     </tr>
                 </tbody>
