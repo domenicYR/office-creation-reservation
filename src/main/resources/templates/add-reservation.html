@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Reservation</title>
+    </head>
+
+    <body>
+        <h1 th:text="${currentRoom.roomName}"></h1>
+
+        <form th:action="@{/reserve-room}" th:object="${reservation}" method="post">
+            <p>Date: <input type="date" th:field="*{reservationDate}"></p>
+            <p>From: <input type="time" th:field="*{reservationTimeFrom}"></p>
+            <p>To: <input type="time" th:field="*{reservationTimeTo}"></p>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+
+</html>
