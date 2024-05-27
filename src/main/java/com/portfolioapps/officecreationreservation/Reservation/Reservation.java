@@ -2,6 +2,8 @@ package com.portfolioapps.officecreationreservation.Reservation;
 
 import com.portfolioapps.officecreationreservation.Room.Room;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "reservations")
@@ -19,6 +21,7 @@ public class Reservation {
     private String reservationTimeTo;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Room room;
 
     // Method(s)
