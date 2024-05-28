@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AppController {
+    // Class variable(s)
     private static Office currentOffice;
     private static Room currentRoom;
 
@@ -43,12 +44,12 @@ public class AppController {
      * Handle request for showing all offices.
      *
      * @param model
-     * @return view offices
+     * @return view show-offices
      */
-    @GetMapping("/offices")
+    @GetMapping("/show-offices")
     public String showOffices(Model model) {
         model.addAttribute("dataOffices", officeRepository.findAllOfficesOrderASC());
-        return "offices";
+        return "show-offices";
     }
 
     /**
@@ -67,24 +68,24 @@ public class AppController {
      * Handle request for storing the input of the form to add an office.
      *
      * @param formData
-     * @return view offices
+     * @return view show-offices
      */
     @PostMapping("/add-office")
     public String handleAddOfficeFormData(@ModelAttribute Office formData) {
         officeRepository.save(formData);
-        return "redirect:/offices";
+        return "redirect:/show-offices";
     }
 
     /**
      * Handle request for deleting an office.
      *
      * @param id
-     * @return view offices
+     * @return view show-offices
      */
     @GetMapping("/delete-office/{id}")
     public String deleteOffice(@PathVariable("id") Integer id) {
         this.officeRepository.deleteById(id);
-        return "redirect:/offices";
+        return "redirect:/show-offices";
     }
 
     // *****************************************************************************************************************
