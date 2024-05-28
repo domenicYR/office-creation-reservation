@@ -35,26 +35,71 @@ public class AppController {
         return "index";
     }
 
+    // *****************
+    // Office Controller
+    // *****************
+
+    /**
+     * Handle request for showing all offices.
+     *
+     * @param model
+     * @return view offices
+     */
     @GetMapping("/offices")
     public String showOffices(Model model) {
         model.addAttribute("dataOffices", officeRepository.findAllOfficesOrderASC());
         return "offices";
     }
 
-    // handle request for showing form to add an office
+    /**
+     * Handle request for showing the form to add an office.
+     *
+     * @param model
+     * @return view add-office
+     */
     @GetMapping("/add-office")
     public String showAddOfficeForm(Model model) {
         model.addAttribute("office", new Office());
         return "add-office";
     }
 
+    /**
+     * Handle request for storing the input of the form to add an office.
+     *
+     * @param formData
+     * @return view offices
+     */
     @PostMapping("/add-office")
     public String handleAddOfficeFormData(@ModelAttribute Office formData) {
         officeRepository.save(formData);
         return "redirect:/offices";
     }
 
-    // handle request for showing rooms to an office
+    /**
+     * Handle request for deleting an office.
+     *
+     * @param id
+     * @return view offices
+     */
+    @GetMapping("/delete-office/{id}")
+    public String deleteOffice(@PathVariable("id") Integer id) {
+        this.officeRepository.deleteById(id);
+        return "redirect:/offices";
+    }
+
+    // *****************************************************************************************************************
+
+    // ***************
+    // Room Controller
+    // ***************
+
+    /**
+     * Handle request for showing all rooms to a specific office.
+     *
+     * @param id
+     * @param model
+     * @return view show-rooms
+     */
     @GetMapping("/show-rooms/{id}")
     public String showRooms(@PathVariable("id") Integer id, Model model) {
         currentOffice = officeRepository.findById(id)
@@ -66,20 +111,24 @@ public class AppController {
         return "show-rooms";
     }
 
-    // handle request for deleting an office
-    @GetMapping("/delete-office/{id}")
-    public String deleteOffice(@PathVariable("id") Integer id) {
-        this.officeRepository.deleteById(id);
-        return "redirect:/offices";
-    }
-
-    // handle request for showing form to add a room
+    /**
+     * Handle request for showing the form to add a room.
+     *
+     * @param model
+     * @return view add-room
+     */
     @GetMapping("/show-rooms/add-room")
     public String showAddRoomForm(Model model) {
         model.addAttribute("room", new Room());
         return "add-room";
     }
 
+    /**
+     * Handle request for storing the input of the form to add a room.
+     *
+     * @param roomFormData
+     * @return view show-rooms
+     */
     @PostMapping("/show-rooms/add-room")
     public String handleAddRoomFormData(@ModelAttribute Room roomFormData) {
         roomFormData.setOffice(currentOffice);
@@ -87,14 +136,31 @@ public class AppController {
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
 
-    // handle request for deleting a room
+    /**
+     * Handle request for deleting a room.
+     *
+     * @param id
+     * @return view show-rooms
+     */
     @GetMapping("/delete-room/{id}")
     public String deleteRoom(@PathVariable("id") Integer id) {
         this.roomRepository.deleteById(id);
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
 
-    // handle request for showing form to add a reservation
+    // *****************************************************************************************************************
+
+    // **********************
+    // Reservation Controller
+    // **********************
+
+    /**
+     * Handle request for showing the form to add a reservation.
+     *
+     * @param id
+     * @param model
+     * @return view add-reservation
+     */
     @GetMapping("/reserve-room/{id}")
     public String reserveRoom(@PathVariable("id") Integer id, Model model) {
         currentRoom = this.roomRepository.findById(id)
@@ -106,6 +172,12 @@ public class AppController {
         return "add-reservation";
     }
 
+    /**
+     * Handle request for storing the input of the form to add a reservation.
+     *
+     * @param reservationFormData
+     * @return view show-rooms
+     */
     @PostMapping("/reserve-room")
     public String handleAddReservationFormData(@ModelAttribute Reservation reservationFormData) {
         reservationFormData.setRoom(currentRoom);
