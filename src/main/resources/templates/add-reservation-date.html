@@ -3,16 +3,14 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Reservation</title>
+        <title>Reservation Date</title>
     </head>
 
     <body>
         <h1 th:text="${currentRoom.roomName}"></h1>
 
-        <form th:action="@{/reserve-room}" th:object="${reservation}" method="post">
+        <form th:action="@{/add-reservation-time}" th:object="${reservation}" method="get">
             <p>Date: <input type="date" th:field="*{reservationDate}"></p>
-            <p>From: <input type="time" th:field="*{reservationTimeFrom}"></p>
-            <p>To: <input type="time" th:field="*{reservationTimeTo}"></p>
             <input type="submit" value="Submit">
         </form>
     </body>
