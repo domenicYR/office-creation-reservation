@@ -16,6 +16,7 @@ public class AppController {
     // Class variable(s)
     private static Office currentOffice;
     private static Room currentRoom;
+    private static String reservationDate;
 
     // Field(s)
     private OfficeRepository officeRepository;
@@ -156,33 +157,62 @@ public class AppController {
     // **********************
 
     /**
-     * Handle request for showing the form to add a reservation.
+     * Handle request for adding a reservation.
+     * There are two forms to make a reservation. The method returns
+     * the name of the view to show the first form to input the date
+     * for the reservation.
      *
      * @param id
      * @param model
-     * @return view add-reservation
+     * @return view add-reservation-date
      */
-    @GetMapping("/reserve-room/{id}")
-    public String reserveRoom(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/add-reservation-date/{id}")
+    public String showReservationDateForm(@PathVariable("id") Integer id, Model model) {
         currentRoom = this.roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
 
         model.addAttribute("currentRoom", currentRoom);
         model.addAttribute("reservation", new Reservation());
 
-        return "add-reservation";
+        return "add-reservation-date";
     }
 
     /**
-     * Handle request for storing the input of the form to add a reservation.
+     * Handle request for adding a reservation.
+     * There are two forms to make a reservation. The method returns
+     * the name of the view to show the second form to input the time
+     * for the reservation.
+     *
+     * @param reservationFormData
+     * @param model
+     * @return view add-reservation-time
+     */
+    @GetMapping("/add-reservation-time")
+    public String showReservationTimeForm(@ModelAttribute Reservation reservationFormData, Model model) {
+        reservationDate = reservationFormData.getReservationDate();
+
+        model.addAttribute("currentRoom", currentRoom);
+        model.addAttribute("reservation", reservationFormData);
+        model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
+                        reservationFormData.getReservationDate(),
+                        currentRoom.getId()));
+
+        return "add-reservation-time";
+    }
+
+    /**
+     * Handle request for storing the input of the forms to add a reservation.
      *
      * @param reservationFormData
      * @return view show-rooms
      */
     @PostMapping("/reserve-room")
     public String handleAddReservationFormData(@ModelAttribute Reservation reservationFormData) {
+        reservationFormData.setReservationDate(reservationDate);
         reservationFormData.setRoom(currentRoom);
+
         this.reservationRepository.save(reservationFormData);
+
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
 }
