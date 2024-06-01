@@ -119,7 +119,7 @@ public class AppController {
      * @param model
      * @return view add-room
      */
-    @GetMapping("/show-rooms/add-room")
+    @GetMapping("/add-room")
     public String showAddRoomForm(Model model) {
         model.addAttribute("room", new Room());
         return "add-room";
@@ -131,7 +131,7 @@ public class AppController {
      * @param roomFormData
      * @return view show-rooms
      */
-    @PostMapping("/show-rooms/add-room")
+    @PostMapping("/add-room")
     public String handleAddRoomFormData(@ModelAttribute Room roomFormData) {
         roomFormData.setOffice(currentOffice);
         this.roomRepository.save(roomFormData);

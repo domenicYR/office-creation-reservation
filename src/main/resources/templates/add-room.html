@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <form th:action="@{/show-rooms/add-room}" th:object="${room}" method="post">
+        <form th:action="@{/add-room}" th:object="${room}" method="post">
             <label>
                 Name:
                 <input type="text" th:field="*{roomName}">
