@@ -6,16 +6,15 @@ import jakarta.persistence.*;
 @Table(name = "offices")
 public class Office {
     // Field(s)
-    // "id" field corresponds primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "officeName")
+    @Column(name = "office_name")
     private String officeName;
-    @Column(name = "officeOpeningTime")
+    @Column(name = "office_opening_time")
     private String officeOpeningTime;
-    @Column(name = "officeClosingTime")
+    @Column(name = "office_closing_time")
     private String officeClosingTime;
 
     // Method(s)

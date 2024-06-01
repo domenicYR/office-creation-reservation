@@ -13,14 +13,15 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "reservationDate")
+    @Column(name = "reservation_date")
     private String reservationDate;
-    @Column(name = "reservationTimeFrom")
+    @Column(name = "reservation_time_from")
     private String reservationTimeFrom;
-    @Column(name = "reservationTimeTo")
+    @Column(name = "reservation_time_to")
     private String reservationTimeTo;
 
     @ManyToOne
+    @JoinColumn(name = "room_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Room room;
 

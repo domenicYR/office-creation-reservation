@@ -13,9 +13,10 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "roomName")
+    @Column(name = "room_name")
     private String roomName;
     @ManyToOne
+    @JoinColumn(name = "office_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Office office;
 
