@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <p>Offices <a href="add-office" role="button">+</a></p>
+        <p>Offices <a th:href="@{/add-office}" role="button">+</a></p>
 
         <div th:if="${dataOffices.isEmpty()}">
             <p>Add your first office!</p>

@@ -9,7 +9,7 @@
     <body>
         <h1 th:text="${currentOffice.officeName}"></h1>
 
-        <p>Rooms <a href="add-room" role="button">+</a></p>
+        <p>Rooms <a th:href="@{/add-room}" role="button">+</a></p>
 
         <div th:if="${dataRooms.isEmpty()}">
             <p>Add your first room!</p>
