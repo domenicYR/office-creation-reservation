@@ -3,15 +3,25 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Create an office</title>
+        <title>Add an office</title>
     </head>
 
     <body>
         <form th:action="@{/add-office}" th:object="${office}" method="post">
-            <p>Name: <input type="text" th:field="*{officeName}" /></p>
-            <p>Opening Time: <input type="time" th:field="*{officeOpeningTime}"></p>
-            <p>Closing Time: <input type="time" th:field="*{officeClosingTime}"></p>
-            <input type="submit" value="Submit" />
+            <label>
+                Name:
+                <input type="text" th:field="*{officeName}">
+            </label>
+            <label>
+                Opening Time:
+                <input type="time" th:field="*{officeOpeningTime}">
+            </label>
+            <label>
+                Closing Time:
+                <input type="time" th:field="*{officeClosingTime}">
+            </label>
+
+            <input type="submit" value="Add office">
         </form>
     </body>
 

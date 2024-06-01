@@ -10,8 +10,12 @@
         <h1 th:text="${currentRoom.roomName}"></h1>
 
         <form th:action="@{/add-reservation-time}" th:object="${reservation}" method="get">
-            <p>Date: <input type="date" th:field="*{reservationDate}"></p>
-            <input type="submit" value="Submit">
+            <label>
+                Date:
+                <input type="date" th:field="*{reservationDate}">
+            </label>
+
+            <input type="submit" value="Select time">
         </form>
     </body>
 

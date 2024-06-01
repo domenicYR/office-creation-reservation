@@ -12,9 +12,16 @@
         <p th:text="${reservation.getReservationDate}"></p>
 
         <form th:action="@{/reserve-room}" th:object="${reservation}" method="post">
-            <p>From: <input type="time" th:field="*{reservationTimeFrom}"></p>
-            <p>To: <input type="time" th:field="*{reservationTimeTo}"></p>
-            <input type="submit" value="Submit">
+            <label>
+                From:
+                <input type="time" th:field="*{reservationTimeFrom}">
+            </label>
+            <label>
+                To:
+                <input type="time" th:field="*{reservationTimeTo}">
+            </label>
+
+            <input type="submit" value="Add reservation">
         </form>
 
         <div th:if="${reservations.isEmpty()}">
