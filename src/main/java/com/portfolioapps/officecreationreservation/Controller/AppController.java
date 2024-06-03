@@ -72,8 +72,11 @@ public class AppController {
      * @return view show-offices
      */
     @PostMapping("/add-office")
-    public String handleAddOfficeFormData(@ModelAttribute Office formData) {
-        officeRepository.save(formData);
+    public String handleAddOfficeFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Office formData) {
+        if (buttonValue.equals("Add office")) {
+            officeRepository.save(formData);
+        }
+
         return "redirect:/show-offices";
     }
 
@@ -132,9 +135,12 @@ public class AppController {
      * @return view show-rooms
      */
     @PostMapping("/add-room")
-    public String handleAddRoomFormData(@ModelAttribute Room roomFormData) {
-        roomFormData.setOffice(currentOffice);
-        this.roomRepository.save(roomFormData);
+    public String handleAddRoomFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Room roomFormData) {
+        if (buttonValue.equals("Add room")) {
+            roomFormData.setOffice(currentOffice);
+            this.roomRepository.save(roomFormData);
+        }
+
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
 
@@ -188,16 +194,20 @@ public class AppController {
      * @return view add-reservation-time
      */
     @GetMapping("/add-reservation-time")
-    public String showReservationTimeForm(@ModelAttribute Reservation reservationFormData, Model model) {
-        reservationDate = reservationFormData.getReservationDate();
+    public String showReservationTimeForm(@RequestParam(name = "action") String buttonValue, @ModelAttribute Reservation reservationFormData, Model model) {
+        if (buttonValue.equals("Select time")) {
+            reservationDate = reservationFormData.getReservationDate();
 
-        model.addAttribute("currentRoom", currentRoom);
-        model.addAttribute("reservation", reservationFormData);
-        model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
-                        reservationFormData.getReservationDate(),
-                        currentRoom.getId()));
+            model.addAttribute("currentRoom", currentRoom);
+            model.addAttribute("reservation", reservationFormData);
+            model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
+                    reservationFormData.getReservationDate(),
+                    currentRoom.getId()));
 
-        return "add-reservation-time";
+            return "add-reservation-time";
+        }
+
+        return "redirect:/show-rooms/" + currentOffice.getId();
     }
 
     /**
@@ -207,11 +217,13 @@ public class AppController {
      * @return view show-rooms
      */
     @PostMapping("/reserve-room")
-    public String handleAddReservationFormData(@ModelAttribute Reservation reservationFormData) {
-        reservationFormData.setReservationDate(reservationDate);
-        reservationFormData.setRoom(currentRoom);
+    public String handleAddReservationFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Reservation reservationFormData) {
+        if (buttonValue.equals("Add reservation")) {
+            reservationFormData.setReservationDate(reservationDate);
+            reservationFormData.setRoom(currentRoom);
 
-        this.reservationRepository.save(reservationFormData);
+            this.reservationRepository.save(reservationFormData);
+        }
 
         return "redirect:/show-rooms/" + currentOffice.getId();
     }
