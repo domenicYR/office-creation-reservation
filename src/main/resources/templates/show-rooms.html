@@ -7,6 +7,8 @@
     </head>
 
     <body>
+        <a th:href="@{/show-offices}" role="button">Offices</a>
+
         <h1 th:text="${currentOffice.officeName}"></h1>
 
         <p>Rooms <a th:href="@{/add-room}" role="button">+</a></p>
