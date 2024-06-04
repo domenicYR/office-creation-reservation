@@ -2,6 +2,7 @@ package com.portfolioapps.officecreationreservation.Room;
 
 import com.portfolioapps.officecreationreservation.Office.Office;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -13,6 +14,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Name may not be empty")
     @Column(name = "room_name")
     private String roomName;
     @ManyToOne

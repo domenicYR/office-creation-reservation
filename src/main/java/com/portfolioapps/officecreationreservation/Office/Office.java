@@ -1,6 +1,7 @@
 package com.portfolioapps.officecreationreservation.Office;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "offices")
@@ -10,6 +11,7 @@ public class Office {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Name may not be empty")
     @Column(name = "office_name")
     private String officeName;
     @Column(name = "office_opening_time")
