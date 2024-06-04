@@ -6,9 +6,11 @@ import com.portfolioapps.officecreationreservation.Room.Room;
 import com.portfolioapps.officecreationreservation.Office.Office;
 import com.portfolioapps.officecreationreservation.Office.OfficeRepository;
 import com.portfolioapps.officecreationreservation.Room.RoomRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -72,8 +74,15 @@ public class AppController {
      * @return view show-offices
      */
     @PostMapping("/add-office")
-    public String handleAddOfficeFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Office formData) {
+    public String handleAddOfficeFormData(@RequestParam(name = "action") String buttonValue,
+                                          @Valid @ModelAttribute Office formData, BindingResult bindingResult) {
+
         if (buttonValue.equals("Add office")) {
+            if (bindingResult.hasErrors()) {
+                return "add-office";
+            }
+
+            formData.setOfficeName(formData.getOfficeName().trim());
             officeRepository.save(formData);
         }
 
@@ -135,8 +144,15 @@ public class AppController {
      * @return view show-rooms
      */
     @PostMapping("/add-room")
-    public String handleAddRoomFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Room roomFormData) {
+    public String handleAddRoomFormData(@RequestParam(name = "action") String buttonValue,
+                                        @Valid @ModelAttribute Room roomFormData, BindingResult bindingResult) {
+
         if (buttonValue.equals("Add room")) {
+            if (bindingResult.hasErrors()) {
+                return "add-room";
+            }
+
+            roomFormData.setRoomName(roomFormData.getRoomName().trim());
             roomFormData.setOffice(currentOffice);
             this.roomRepository.save(roomFormData);
         }
