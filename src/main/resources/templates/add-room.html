@@ -11,6 +11,7 @@
             <label>
                 Name:
                 <input type="text" th:field="*{roomName}">
+                <p th:if="${#fields.hasErrors('roomName')}" th:errors="*{roomName}"></p>
             </label>
 
             <input type="submit" name="action" value="Add room">
