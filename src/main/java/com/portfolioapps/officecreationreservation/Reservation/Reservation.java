@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "reservations")
 public class Reservation {
@@ -14,7 +16,7 @@ public class Reservation {
     private Integer id;
 
     @Column(name = "reservation_date")
-    private String reservationDate;
+    private LocalDate reservationDate;
     @Column(name = "reservation_time_from")
     private String reservationTimeFrom;
     @Column(name = "reservation_time_to")
@@ -34,11 +36,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getReservationDate() {
+    public LocalDate getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(String reservationDate) {
+    public void setReservationDate(LocalDate reservationDate) {
         this.reservationDate = reservationDate;
     }
 

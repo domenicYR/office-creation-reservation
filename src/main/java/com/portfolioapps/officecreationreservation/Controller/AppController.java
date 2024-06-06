@@ -13,12 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 public class AppController {
     // Class variable(s)
     private static Office currentOffice;
     private static Room currentRoom;
-    private static String reservationDate;
+    private static LocalDate reservationDate;
 
     // Field(s)
     private OfficeRepository officeRepository;
