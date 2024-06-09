@@ -1,26 +1,27 @@
 package com.portfolioapps.officecreationreservation.Controller;
 
+import com.portfolioapps.officecreationreservation.Reservation.Validation.DateFormValidation;
+import com.portfolioapps.officecreationreservation.Office.Office;
+import com.portfolioapps.officecreationreservation.Office.OfficeRepository;
 import com.portfolioapps.officecreationreservation.Reservation.Reservation;
 import com.portfolioapps.officecreationreservation.Reservation.ReservationRepository;
 import com.portfolioapps.officecreationreservation.Room.Room;
-import com.portfolioapps.officecreationreservation.Office.Office;
-import com.portfolioapps.officecreationreservation.Office.OfficeRepository;
 import com.portfolioapps.officecreationreservation.Room.RoomRepository;
+import com.portfolioapps.officecreationreservation.Reservation.Validation.TimeFormValidation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 
 @Controller
 public class AppController {
     // Class variable(s)
     private static Office currentOffice;
     private static Room currentRoom;
-    private static LocalDate reservationDate;
+    private static Reservation currentReservation;
 
     // Field(s)
     private OfficeRepository officeRepository;
@@ -53,7 +54,7 @@ public class AppController {
      */
     @GetMapping("/show-offices")
     public String showOffices(Model model) {
-        model.addAttribute("dataOffices", officeRepository.findAllOfficesOrderASC());
+        model.addAttribute("dataOffices", this.officeRepository.findAllOfficesOrderASC());
         return "show-offices";
     }
 
@@ -85,7 +86,7 @@ public class AppController {
             }
 
             formData.setOfficeName(formData.getOfficeName().trim());
-            officeRepository.save(formData);
+            this.officeRepository.save(formData);
         }
 
         return "redirect:/show-offices";
@@ -118,11 +119,11 @@ public class AppController {
      */
     @GetMapping("/show-rooms/{id}")
     public String showRooms(@PathVariable("id") Integer id, Model model) {
-        currentOffice = officeRepository.findById(id)
+        currentOffice = this.officeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
 
         model.addAttribute("currentOffice", currentOffice);
-        model.addAttribute("dataRooms", roomRepository.findAllRoomsByForeignKey(id));
+        model.addAttribute("dataRooms", this.roomRepository.findAllRoomsByForeignKey(id));
 
         return "show-rooms";
     }
@@ -207,19 +208,29 @@ public class AppController {
      * the name of the view to show the second form to input the time
      * for the reservation.
      *
+     * @param buttonValue
      * @param reservationFormData
+     * @param bindingResult
      * @param model
      * @return view add-reservation-time
      */
     @GetMapping("/add-reservation-time")
-    public String showReservationTimeForm(@RequestParam(name = "action") String buttonValue, @ModelAttribute Reservation reservationFormData, Model model) {
+    public String showReservationTimeForm(@RequestParam(name = "action") String buttonValue,
+                                          @Validated(DateFormValidation.class) @ModelAttribute Reservation reservationFormData, BindingResult bindingResult,
+                                          Model model) {
+
         if (buttonValue.equals("Select time")) {
-            reservationDate = reservationFormData.getReservationDate();
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("currentRoom", currentRoom);
+                return "add-reservation-date";
+            }
+
+            currentReservation = reservationFormData;
 
             model.addAttribute("currentRoom", currentRoom);
-            model.addAttribute("reservation", reservationFormData);
+            model.addAttribute("currentReservation", currentReservation);
             model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
-                    reservationFormData.getReservationDate(),
+                    currentReservation.getReservationDate(),
                     currentRoom.getId()));
 
             return "add-reservation-time";
@@ -231,13 +242,29 @@ public class AppController {
     /**
      * Handle request for storing the input of the forms to add a reservation.
      *
+     * @param buttonValue
      * @param reservationFormData
+     * @param bindingResult
+     * @param model
      * @return view show-rooms
      */
     @PostMapping("/reserve-room")
-    public String handleAddReservationFormData(@RequestParam(name = "action") String buttonValue, @ModelAttribute Reservation reservationFormData) {
+    public String handleAddReservationFormData(@RequestParam(name = "action") String buttonValue,
+                                               @Validated(TimeFormValidation.class) @ModelAttribute Reservation reservationFormData,
+                                               BindingResult bindingResult,
+                                               Model model) {
+
         if (buttonValue.equals("Add reservation")) {
-            reservationFormData.setReservationDate(reservationDate);
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("currentRoom", currentRoom);
+                model.addAttribute("currentReservation", currentReservation);
+                model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
+                        currentReservation.getReservationDate(),
+                        currentRoom.getId()));
+                return "add-reservation-time";
+            }
+
+            reservationFormData.setReservationDate(currentReservation.getReservationDate());
             reservationFormData.setRoom(currentRoom);
 
             this.reservationRepository.save(reservationFormData);

@@ -9,16 +9,18 @@
     <body>
         <h1 th:text="${currentRoom.roomName}"></h1>
 
-        <p th:text="${reservation.getReservationDate}"></p>
+        <p th:text="${currentReservation.reservationDate}"></p>
 
         <form th:action="@{/reserve-room}" th:object="${reservation}" method="post">
             <label>
                 From:
                 <input type="time" th:field="*{reservationTimeFrom}">
+                <p th:if="${#fields.hasErrors('reservationTimeFrom')}" th:errors="*{reservationTimeFrom}"></p>
             </label>
             <label>
                 To:
                 <input type="time" th:field="*{reservationTimeTo}">
+                <p th:if="${#fields.hasErrors('reservationTimeTo')}" th:errors="*{reservationTimeTo}"></p>
             </label>
 
             <input type="submit" name="action" value="Add reservation">

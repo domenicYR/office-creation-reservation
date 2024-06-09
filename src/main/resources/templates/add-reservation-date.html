@@ -13,6 +13,7 @@
             <label>
                 Date:
                 <input type="date" th:field="*{reservationDate}">
+                <p th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></p>
             </label>
 
             <input type="submit" name="action" value="Select time">

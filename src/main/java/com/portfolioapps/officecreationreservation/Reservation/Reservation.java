@@ -1,7 +1,12 @@
 package com.portfolioapps.officecreationreservation.Reservation;
 
+import com.portfolioapps.officecreationreservation.Reservation.Validation.DateFormValidation;
+import com.portfolioapps.officecreationreservation.Reservation.Validation.TimeFormValidation;
 import com.portfolioapps.officecreationreservation.Room.Room;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,10 +20,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "Please select a date", groups = DateFormValidation.class)
+    @FutureOrPresent(message = "Date cannot be in the past", groups = DateFormValidation.class)
     @Column(name = "reservation_date")
     private LocalDate reservationDate;
+
+    @NotEmpty(message = "Field may not be empty", groups = TimeFormValidation.class)
     @Column(name = "reservation_time_from")
     private String reservationTimeFrom;
+
+    @NotEmpty(message = "Field may not be empty", groups = TimeFormValidation.class)
     @Column(name = "reservation_time_to")
     private String reservationTimeTo;
 
