@@ -73,7 +73,9 @@ public class AppController {
     /**
      * Handle request for storing the input of the form to add an office.
      *
+     * @param buttonValue
      * @param formData
+     * @param bindingResult
      * @return view show-offices
      */
     @PostMapping("/add-office")
@@ -143,7 +145,9 @@ public class AppController {
     /**
      * Handle request for storing the input of the form to add a room.
      *
+     * @param buttonValue
      * @param roomFormData
+     * @param bindingResult
      * @return view show-rooms
      */
     @PostMapping("/add-room")
