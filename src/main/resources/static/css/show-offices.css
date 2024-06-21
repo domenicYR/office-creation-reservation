@@ -1,0 +1,26 @@
+.link-add-office {
+    border: 2px solid #6495ED;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-decoration: none;
+    display: inline-block;
+    color: #909090;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.link-add-office:hover, .link-add-office:active {
+    color: #6495ED;
+}
+
+.link-office {
+    border: 2px solid #6495ED;
+    border-radius: 8px;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: #909090;
+}
+
+.link-office:hover, .link-office:active {
+    color: #6495ED;
+}

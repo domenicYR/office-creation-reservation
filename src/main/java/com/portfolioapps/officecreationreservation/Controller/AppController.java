@@ -196,6 +196,7 @@ public class AppController {
         currentRoom = this.roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Id: " + id));
 
+        model.addAttribute("currentOffice", currentOffice);
         model.addAttribute("currentRoom", currentRoom);
         model.addAttribute("reservation", new Reservation());
 
@@ -221,12 +222,14 @@ public class AppController {
 
         if (buttonValue.equals("Select time")) {
             if (bindingResult.hasErrors()) {
+                model.addAttribute("currentOffice", currentOffice);
                 model.addAttribute("currentRoom", currentRoom);
                 return "add-reservation-date";
             }
 
             currentReservation = reservationFormData;
 
+            model.addAttribute("currentOffice", currentOffice);
             model.addAttribute("currentRoom", currentRoom);
             model.addAttribute("currentReservation", currentReservation);
             model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(
@@ -256,6 +259,7 @@ public class AppController {
 
         if (buttonValue.equals("Add reservation")) {
             if (bindingResult.hasErrors()) {
+                model.addAttribute("currentOffice", currentOffice);
                 model.addAttribute("currentRoom", currentRoom);
                 model.addAttribute("currentReservation", currentReservation);
                 model.addAttribute("reservations", this.reservationRepository.findAllReservationsByDateAndRoomID(

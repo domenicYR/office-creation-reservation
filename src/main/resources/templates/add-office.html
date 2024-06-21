@@ -3,27 +3,40 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/w3.css">
+        <link rel="stylesheet" href="/css/add-office.css">
+
         <title>Add an office</title>
     </head>
 
-    <body>
-        <form th:action="@{/add-office}" th:object="${office}" method="post">
+    <body class="w3-content" style="max-width:650px">
+        <form id="form-add-office" th:action="@{/add-office}" th:object="${office}" method="post">
             <label>
-                Name:
-                <input type="text" th:field="*{officeName}">
-                <p th:if="${#fields.hasErrors('officeName')}" th:errors="*{officeName}"></p>
-            </label>
-            <label>
-                Opening Time:
-                <input type="time" th:field="*{officeOpeningTime}">
-            </label>
-            <label>
-                Closing Time:
-                <input type="time" th:field="*{officeClosingTime}">
+                Name
+                <input class="input-office-name" type="text" th:field="*{officeName}">
+                <p class="w3-panel w3-pale-red error-message" th:if="${#fields.hasErrors('officeName')}" th:errors="*{officeName}"></p>
             </label>
 
-            <input type="submit" name="action" value="Add office">
-            <input type="submit" name="action" value="Cancel">
+            <div class="w3-row">
+                <div class="w3-quarter">
+                    <label>
+                        Opening Time
+                        <input class="input-opening-time" type="time" th:field="*{officeOpeningTime}">
+                    </label>
+                </div>
+
+                <div class="w3-quarter">
+                    <label>
+                        Closing Time
+                        <input class="input-closing-time" type="time" th:field="*{officeClosingTime}">
+                    </label>
+                </div>
+            </div>
+
+            <button class="w3-blue-grey" type="submit" name="action" value="Add office">Add office</button>
+            <button class="w3-blue-grey" type="submit" name="action" value="Cancel">Cancel</button>
         </form>
     </body>
 

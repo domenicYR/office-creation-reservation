@@ -1,0 +1,28 @@
+#form-add-room {
+    margin-top: 15px;
+}
+
+.input-room-name {
+    display: block;
+    border: none;
+    border-bottom: 2px solid #C8C8C8;
+    padding: 2px 0px;
+    width: 100%;
+    outline: none;
+    background-color: #F5F5F5;
+    color: #989898;
+    margin-top: 2px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.error-message {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding: 7px 16px;
+}

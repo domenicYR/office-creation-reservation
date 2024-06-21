@@ -3,19 +3,24 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/w3.css">
+        <link rel="stylesheet" href="/css/add-room.css">
+
         <title>Add a room</title>
     </head>
 
-    <body>
-        <form th:action="@{/add-room}" th:object="${room}" method="post">
+    <body class="w3-content" style="max-width:650px">
+        <form id="form-add-room" th:action="@{/add-room}" th:object="${room}" method="post">
             <label>
-                Name:
-                <input type="text" th:field="*{roomName}">
-                <p th:if="${#fields.hasErrors('roomName')}" th:errors="*{roomName}"></p>
+                Name
+                <input class="input-room-name" type="text" th:field="*{roomName}">
+                <p class="w3-panel w3-pale-red error-message" th:if="${#fields.hasErrors('roomName')}" th:errors="*{roomName}"></p>
             </label>
 
-            <input type="submit" name="action" value="Add room">
-            <input type="submit" name="action" value="Cancel">
+            <button class="w3-blue-grey" type="submit" name="action" value="Add room">Add room</button>
+            <button class="w3-blue-grey" type="submit" name="action" value="Cancel">Cancel</button>
         </form>
     </body>
 

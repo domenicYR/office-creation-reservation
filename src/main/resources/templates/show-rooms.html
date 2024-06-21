@@ -3,22 +3,27 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/w3.css">
+        <link rel="stylesheet" href="/css/show-rooms.css">
+
         <title th:text="${currentOffice.officeName}"></title>
     </head>
 
-    <body>
-        <a th:href="@{/show-offices}" role="button">Offices</a>
+    <body class="w3-content" style="max-width:650px">
+        <a class="link-show-offices" th:href="@{/show-offices}" role="button">Offices</a>
 
-        <h1 th:text="${currentOffice.officeName}"></h1>
+        <h2 class="w3-center" th:text="${currentOffice.officeName}"></h2>
 
-        <p>Rooms <a th:href="@{/add-room}" role="button">+</a></p>
+        <a class="link-add-room" th:href="@{/add-room}" role="button">Add room</a>
 
         <div th:if="${dataRooms.isEmpty()}">
             <p>Add your first room!</p>
         </div>
 
         <div th:if="${!dataRooms.isEmpty()}">
-            <table>
+            <table class="w3-table w3-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Room</th>
@@ -27,8 +32,10 @@
                 <tbody>
                     <tr th:each="dataRoom : ${dataRooms}">
                         <td th:text="${dataRoom.roomName}"></td>
-                        <td><a th:href="@{/add-reservation-date/{id}(id=${dataRoom.id})}" role="button">Reserve room</a></td>
-                        <td><a th:href="@{/delete-room/{id}(id=${dataRoom.id})}" role="button">Delete room</a></td>
+                        <td class="w3-right-align">
+                            <a class="link-room" th:href="@{/add-reservation-date/{id}(id=${dataRoom.id})}" role="button">Reserve room</a>
+                            <a class="link-room" th:href="@{/delete-room/{id}(id=${dataRoom.id})}" role="button">Delete room</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -1,0 +1,38 @@
+.link-show-offices {
+    text-decoration: solid underline #6495ED;
+    display: inline-block;
+    color: #909090;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.link-show-offices:hover, .link-show-offices:active {
+    color: #6495ED;
+}
+
+.link-add-room {
+    border: 2px solid #6495ED;
+    border-radius: 20px;
+    padding: 5px 15px;
+    text-decoration: none;
+    display: inline-block;
+    color: #909090;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.link-add-room:hover, .link-add-room:active {
+    color: #6495ED;
+}
+
+.link-room {
+    border: 2px solid #6495ED;
+    border-radius: 8px;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: #909090;
+}
+
+.link-room:hover, .link-room:active {
+    color: #6495ED;
+}

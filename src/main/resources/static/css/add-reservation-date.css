@@ -1,0 +1,48 @@
+h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.form-position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#first-form {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#second-form {
+    font-size: 15px;
+    color: #B0B0B0;
+    margin-bottom: 20px;
+}
+
+.input-reservation-date {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #C8C8C8;
+    padding: 2px 37px;
+    outline: none;
+    background-color: #F5F5F5;
+    color: #989898;
+    cursor: text;
+    margin-top: 2px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.error-message {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding: 7px 16px;
+}

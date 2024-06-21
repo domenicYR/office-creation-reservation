@@ -3,18 +3,23 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/w3.css">
+        <link rel="stylesheet" href="/css/show-offices.css">
+
         <title>Offices</title>
     </head>
 
-    <body>
-        <p>Offices <a th:href="@{/add-office}" role="button">+</a></p>
+    <body class="w3-content" style="max-width:650px">
+        <a class="link-add-office" th:href="@{/add-office}" role="button">Add office</a>
 
         <div th:if="${dataOffices.isEmpty()}">
             <p>Add your first office!</p>
         </div>
 
         <div th:if="${!dataOffices.isEmpty()}">
-            <table>
+            <table class="w3-table w3-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Office</th>
@@ -23,8 +28,10 @@
                 <tbody>
                     <tr th:each="dataOffice : ${dataOffices}">
                         <td th:text="${dataOffice.officeName}"></td>
-                        <td><a th:href="@{/show-rooms/{id}(id=${dataOffice.id})}" role="button">Show rooms</a></td>
-                        <td><a th:href="@{/delete-office/{id}(id=${dataOffice.id})}" role="button">Delete office</a></td>
+                        <td class="w3-right-align">
+                            <a class="link-office" th:href="@{/show-rooms/{id}(id=${dataOffice.id})}" role="button">Show rooms</a>
+                            <a class="link-office" th:href="@{/delete-office/{id}(id=${dataOffice.id})}" role="button">Delete office</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -3,22 +3,34 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/css/default.css">
+        <link rel="stylesheet" href="/css/w3.css">
+        <link rel="stylesheet" href="/css/add-reservation-date.css">
+
         <title>Reservation Date</title>
     </head>
 
-    <body>
-        <h1 th:text="${currentRoom.roomName}"></h1>
+    <body class="w3-content" style="max-width:650px">
+        <div class="w3-center">
+            <h3>Office: </h3>
+            <h3 th:text="${currentOffice.officeName}"></h3>
+            <h3> | Room: </h3>
+            <h3 th:text="${currentRoom.roomName}"></h3>
+        </div>
 
-        <form th:action="@{/add-reservation-time}" th:object="${reservation}" method="get">
-            <label>
-                Date:
-                <input type="date" th:field="*{reservationDate}">
-                <p th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></p>
-            </label>
+        <div class="form-position">
+            <form th:action="@{/add-reservation-time}" th:object="${reservation}" method="get">
+                <p id="first-form">1. Reservation Date</p>
+                <p id="second-form">2. Reservation Time</p>
 
-            <input type="submit" name="action" value="Select time">
-            <input type="submit" name="action" value="Cancel">
-        </form>
+                <input class="input-reservation-date" type="date" th:field="*{reservationDate}">
+                <p class="w3-panel w3-pale-red error-message" th:if="${#fields.hasErrors('reservationDate')}" th:errors="*{reservationDate}"></p>
+
+                <button class="w3-blue-grey" type="submit" name="action" value="Select time">Select time</button>
+                <button class="w3-blue-grey" type="submit" name="action" value="Cancel">Cancel</button>
+            </form>
+        </div>
     </body>
 
 </html>

@@ -1,0 +1,78 @@
+h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.form-position {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#first-form {
+    font-size: 15px;
+    color: #B0B0B0;
+}
+
+#second-form {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.input-reservation-time-from {
+    display: block;
+    width: 100px;
+    border: none;
+    border-bottom: 2px solid #C8C8C8;
+    padding: 2px 0px;
+    outline: none;
+    background-color: #F5F5F5;
+    text-align: center;
+    color: #989898;
+    cursor: text;
+    margin-top: 5px;
+}
+
+.input-reservation-time-to {
+    display: block;
+    width: 100px;
+    border: none;
+    border-bottom: 2px solid #C8C8C8;
+    padding: 2px 0px;
+    outline: none;
+    background-color: #F5F5F5;
+    text-align: center;
+    color: #989898;
+    cursor: text;
+    margin-top: 5px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 45px;
+    cursor: pointer;
+}
+
+.error-message {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding: 7px 16px;
+}
+
+.reservation-date {
+    display: inline;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#table-description {
+    margin-bottom: 10px;
+}
+
+.table-reservation-time {
+    display: inline;
+}

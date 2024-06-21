@@ -25,11 +25,11 @@ public class Reservation {
     @Column(name = "reservation_date")
     private LocalDate reservationDate;
 
-    @NotEmpty(message = "Field may not be empty", groups = TimeFormValidation.class)
+    @NotEmpty(message = "Field FROM may not be empty", groups = TimeFormValidation.class)
     @Column(name = "reservation_time_from")
     private String reservationTimeFrom;
 
-    @NotEmpty(message = "Field may not be empty", groups = TimeFormValidation.class)
+    @NotEmpty(message = "Field TO may not be empty", groups = TimeFormValidation.class)
     @Column(name = "reservation_time_to")
     private String reservationTimeTo;
 
