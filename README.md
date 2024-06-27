@@ -2,7 +2,7 @@
 
 ## Description
 This application can be used by companies, which have one or more offices 
-and need a reservation system for its rooms.
+and need a reservation system for their rooms.
 
 The application provides the functionality of creating multiple offices and
 to each office one or more rooms can be added. A room can then be reserved by 
